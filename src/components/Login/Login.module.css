@@ -1,0 +1,111 @@
+/* Paleta de verdes */
+:root {
+  --green-dark: #1e5631;    /* fundo principal */
+  --green-medium: #2d7a42;  /* hover e detalhes */
+  --green-light: #a3d9b1;   /* placeholder, bordas sutis */
+  --green-pastel: #e6f7e6;  /* fundo do container */
+  --white: #ffffff;
+  --text-dark: #1a3b23;     /* texto escuro esverdeado */
+  --text-muted: #4e6b58;    /* texto secundário */
+}
+
+.container {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2.5rem 2rem;
+  background-color: var(--green-pastel);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(30, 86, 49, 0.12);
+  text-align: center;
+}
+
+.title {
+  color: var(--green-dark);
+  font-size: 1.8rem;
+  margin-bottom: 1.8rem;
+  font-weight: 600;
+}
+
+.label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.4rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid var(--green-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: var(--white);
+  color: var(--text-dark);
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--green-medium);
+  box-shadow: 0 0 0 3px rgba(45, 122, 66, 0.2);
+}
+
+.button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: var(--green-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s, transform 0.1s;
+  margin-top: 0.5rem;
+}
+
+.button:hover {
+  background-color: var(--green-medium);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.registerText {
+  margin-top: 1.8rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.registerLink {
+  color: var(--green-medium);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.registerLink:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+.input::placeholder {
+  color: #a3d9b1; /* verde claro da sua paleta */
+  opacity: 0.8;
+}
+
+.inputError {
+  border-color: #e53e3e !important; /* vermelho */
+}
+.errorMessage {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
