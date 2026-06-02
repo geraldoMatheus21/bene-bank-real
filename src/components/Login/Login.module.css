@@ -1,12 +1,15 @@
-/* Paleta de verdes */
+/* Login.module.css */
+
+/* Paleta de cores do projeto */
 :root {
-  --green-dark: #1e5631;    /* fundo principal */
-  --green-medium: #2d7a42;  /* hover e detalhes */
-  --green-light: #a3d9b1;   /* placeholder, bordas sutis */
-  --green-pastel: #e6f7e6;  /* fundo do container */
+  --green-dark: #1e5631;
+  --green-medium: #2d7a42;
+  --green-light: #a3d9b1;
+  --green-pastel: #e6f7e6;
   --white: #ffffff;
-  --text-dark: #1a3b23;     /* texto escuro esverdeado */
-  --text-muted: #4e6b58;    /* texto secundário */
+  --text-dark: #1a3b23;
+  --text-muted: #4e6b58;
+  --gray-border: #d1d5db;
 }
 
 .container {
@@ -94,14 +97,10 @@
   text-decoration: underline;
 }
 
-.input::placeholder {
-  color: #a3d9b1; /* verde claro da sua paleta */
-  opacity: 0.8;
+.inputError {
+  border-color: #e53e3e !important;
 }
 
-.inputError {
-  border-color: #e53e3e !important; /* vermelho */
-}
 .errorMessage {
   color: #e53e3e;
   font-size: 0.8rem;

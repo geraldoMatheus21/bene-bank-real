@@ -1,12 +1,13 @@
-import { Heading } from '@chakra-ui/react';
-import './Header.module.css';
+import styles from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header>
-      <Heading as="h1" size="lg" color="brand.900" textAlign="center" py="4">
-        Bem-vindo ao Bené Bank
-      </Heading>
+    <header className={styles.header}>
+      <img
+        src="/bene_bank_log.png"   /* caminho a partir da pasta public */
+        alt="Bené Bank Logo"
+        className={styles.logo}
+      />
     </header>
   );
 };

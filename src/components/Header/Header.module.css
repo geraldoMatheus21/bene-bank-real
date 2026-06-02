@@ -1,3 +1,13 @@
 .header {
-    Background-color: rgb(82, 250, 82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-top: 15px;
+}
+
+.logo {
+  width: 500px;           /* 👈 ajuste aqui o tamanho que desejar */
+  height: auto;
+  transition: transform 0.2s;
 }
