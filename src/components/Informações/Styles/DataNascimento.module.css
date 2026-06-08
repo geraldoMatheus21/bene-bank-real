@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1a3b23; /* verde escuro */
+  margin-bottom: 0.2rem;
+}
+
+.input {
+  padding: 0.8rem 1rem;
+  border: 2px solid #a3d9b1; /* verde claro */
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #ffffff;
+  color: #1a3b23;
+  width: 100%;
+  box-sizing: border-box;
+  /* Aparência padrão do calendário */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Ícone de calendário customizado (opcional) */
+.input::-webkit-calendar-picker-indicator {
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(90deg); /* ícone verde */
+  cursor: pointer;
+}
+
+.input:focus {
+  border-color: #2d7a42; /* verde médio */
+  box-shadow: 0 0 0 3px rgba(45, 122, 66, 0.2);
+}
+
+.input::placeholder {
+  color: #a3d9b1;
+  opacity: 1;
+}

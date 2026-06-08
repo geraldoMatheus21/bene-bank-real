@@ -1,17 +1,25 @@
-import { Card } from "./components/Card";
 import { Header } from "./components/Header/Header";
-import { Layout } from "./components/Layout";
-import { Login } from "./components/Login/Login";
+import { Layout } from "./components/Layout/Layout";
+import { Login } from "./Pages/Login/Login";
 import { Footer } from "./components/Footer/Footer";
-import styled from "styled-components";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CriarLogin from "./Pages/CriarLogin/CriarLogin";
 
 function App() {
   return (
-    <Layout>
-      <Header />
-      <Login />
-      <Footer />
-    </Layout> 
+    <Router>
+      <Layout>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/criar-login" element={<CriarLogin />} />
+          {/* Futura rota para esqueci a senha */}
+          {/* <Route path="/esqueci-senha" element={<EsqueciSenha />} /> */}
+        </Routes>
+        <Footer />
+      </Layout>
+    </Router>
   );
 }
 

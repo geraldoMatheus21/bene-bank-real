@@ -1,0 +1,47 @@
+/* Container principal - card verde */
+.container {
+  max-width: 480px;
+  margin: 4rem auto;
+  padding: 2.5rem 2rem;
+  background-color: #e6f7e6;  /* verde pastel */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(30, 86, 49, 0.15);
+  text-align: center;
+}
+
+/* Título */
+.title {
+  color: #1e5631;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+}
+
+/* Formulário */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+}
+
+/* Mensagem de erro geral (caso queira usar) */
+.errorMessage {
+  color: #e53e3e;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Ajuste para o botão (espaçamento extra) */
+.form button {
+  margin-top: 0.5rem;
+}
+
+/* Responsivo: telas menores */
+@media (max-width: 520px) {
+  .container {
+    margin: 2rem 1rem;
+    padding: 2rem 1.5rem;
+  }
+}

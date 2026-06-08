@@ -1,0 +1,79 @@
+/* Estilos base */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+  line-height: 1;
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(30, 86, 49, 0.4);
+}
+
+/* Variantes */
+.primary {
+  background-color: #1e5631; /* verde escuro */
+  color: #ffffff;
+  border-color: #1e5631;
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #2d7a42;
+  border-color: #2d7a42;
+}
+
+.secondary {
+  background-color: transparent;
+  color: #1e5631;
+  border-color: #1e5631;
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: rgba(30, 86, 49, 0.08);
+}
+
+.danger {
+  background-color: #e53e3e;
+  color: #ffffff;
+  border-color: #e53e3e;
+}
+
+.danger:hover:not(:disabled) {
+  background-color: #c53030;
+  border-color: #c53030;
+}
+
+/* Tamanhos */
+.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.medium {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
+
+.large {
+  padding: 1rem 2rem;
+  font-size: 1.15rem;
+}
+
+/* Largura total */
+.fullWidth {
+  width: 100%;
+}
+
+/* Estado desabilitado */
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

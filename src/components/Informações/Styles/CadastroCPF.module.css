@@ -1,0 +1,59 @@
+/* Paleta verde do Bené Bank */
+:root {
+  --green-dark: #1e5631;
+  --green-medium: #2d7a42;
+  --green-light: #a3d9b1;
+  --green-pastel: #e6f7e6;
+  --text-dark: #1a3b23;
+  --text-muted: #4e6b58;
+  --white: #ffffff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.2rem;
+}
+
+.input {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--green-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: var(--white);
+  color: var(--text-dark);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: var(--green-medium);
+  box-shadow: 0 0 0 3px rgba(45, 122, 66, 0.2);
+}
+
+.input::placeholder {
+  color: var(--green-light);
+  opacity: 1;
+}
+
+.inputError {
+  border-color: #e53e3e; /* vermelho para erro, mas pode usar um tom da paleta */
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
+}
+
+.errorMessage {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
