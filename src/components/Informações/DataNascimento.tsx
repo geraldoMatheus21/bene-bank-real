@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import styles from '../Informações/Styles/DataNascimento.module.css';
-import { validateBirthDate } from '../../utils/dateValidators'; // ajuste o caminho se necessário
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import styles from './Styles/DataNascimento.module.css';
+import { validateBirthDate } from '../../utils/dateValidators';
 
-interface DataNascimentoProps {
-  onValidityChange?: (isValid: boolean) => void;
+export interface DataNascimentoRef {
+  getValue: () => string;
+  isValid: () => boolean;
 }
 
-export const DataNascimento = ({ onValidityChange }: DataNascimentoProps) => {
+const DataNascimento = forwardRef<DataNascimentoRef, {}>((props, ref) => {
   const [dataNascimento, setDataNascimento] = useState('');
   const [error, setError] = useState('');
 
@@ -21,18 +22,14 @@ export const DataNascimento = ({ onValidityChange }: DataNascimentoProps) => {
     }
   };
 
-  // A validade é verdadeira se a data foi preenchida e não há erro
-  const isValid = dataNascimento !== '' && error === '';
-
-  useEffect(() => {
-    onValidityChange?.(isValid);
-  }, [isValid, onValidityChange]);
+  useImperativeHandle(ref, () => ({
+    getValue: () => dataNascimento,
+    isValid: () => dataNascimento !== '' && error === '',
+  }));
 
   return (
     <div className={styles.wrapper}>
-      <label htmlFor="dataNascimento" className={styles.label}>
-        Data de Nascimento:
-      </label>
+      <label htmlFor="dataNascimento" className={styles.label}>Data de Nascimento:</label>
       <input
         type="date"
         id="dataNascimento"
@@ -45,4 +42,6 @@ export const DataNascimento = ({ onValidityChange }: DataNascimentoProps) => {
       {error && <span className={styles.errorMessage}>{error}</span>}
     </div>
   );
-};
+});
+
+export { DataNascimento };

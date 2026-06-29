@@ -1,21 +1,18 @@
-import { useState, useEffect } from 'react';
-import styles from '../Informações/Styles/Name.module.css';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import styles from './Styles/Name.module.css';
 
-interface NameProps {
-  onValidityChange?: (isValid: boolean) => void;
+export interface NameRef {
+  getValue: () => string;
+  isValid: () => boolean;
 }
 
-export const Name = ({ onValidityChange }: NameProps) => {
+const Name = forwardRef<NameRef, {}>((props, ref) => {
   const [name, setName] = useState('');
-  const isValid = name.trim().length >= 2; // pelo menos 2 caracteres
 
-  useEffect(() => {
-    onValidityChange?.(isValid);
-  }, [isValid, onValidityChange]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
+  useImperativeHandle(ref, () => ({
+    getValue: () => name,
+    isValid: () => name.trim().length >= 2,
+  }));
 
   return (
     <div className={styles.wrapper}>
@@ -25,9 +22,11 @@ export const Name = ({ onValidityChange }: NameProps) => {
         id="name"
         className={styles.input}
         value={name}
-        onChange={handleChange}
+        onChange={(e) => setName(e.target.value)}
         placeholder="Digite seu nome"
       />
     </div>
   );
-};
+});
+
+export { Name };

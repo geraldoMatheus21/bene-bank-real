@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import styles from '../Informações/Styles/CadastroCPF.module.css';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import styles from './Styles/CadastroCPF.module.css';
 import { cpfMask, isValidCPF } from '../../utils/Validators';
 
-interface CadastroCPFProps {
-  onValidityChange?: (isValid: boolean) => void;
+export interface CadastroCPFRef {
+  getValue: () => string;
+  isValid: () => boolean;
 }
 
-export const CadastroCPF = ({ onValidityChange }: CadastroCPFProps) => {
+const CadastroCPF = forwardRef<CadastroCPFRef, {}>((props, ref) => {
   const [cpf, setCpf] = useState('');
   const [error, setError] = useState(false);
 
@@ -20,11 +21,10 @@ export const CadastroCPF = ({ onValidityChange }: CadastroCPFProps) => {
     }
   };
 
-  const isValid = cpf.length === 14 && !error;
-
-  useEffect(() => {
-    onValidityChange?.(isValid);
-  }, [isValid, onValidityChange]);
+  useImperativeHandle(ref, () => ({
+    getValue: () => cpf.replace(/\D/g, ''),
+    isValid: () => cpf.length === 14 && !error,
+  }));
 
   return (
     <div className={styles.wrapper}>
@@ -41,4 +41,6 @@ export const CadastroCPF = ({ onValidityChange }: CadastroCPFProps) => {
       {error && <span className={styles.errorMessage}>CPF inválido</span>}
     </div>
   );
-};
+});
+
+export { CadastroCPF };

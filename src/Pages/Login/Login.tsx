@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.module.css';
-import { cpfMask, isValidCPF } from '../../utils/Validators'; // ajuste o caminho se necessário
+import { cpfMask, isValidCPF } from '../../utils/Validators';
 import { Button } from '../../components/Button/Button';
+import { useAuth } from '../../contexts/AuthContext';
 
 export const Login = () => {
   const [cpf, setCpf] = useState('');
   const [cpfError, setCpfError] = useState(false);
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const { login } = useAuth();
 
   const handleCPFChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const masked = cpfMask(e.target.value);
@@ -19,11 +22,18 @@ export const Login = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isButtonDisabled) return;
-    console.log('Login com CPF:', cpf.replace(/\D/g, ''));
-    // lógica de autenticação aqui
+
+    try {
+      setLoginError('');
+      // Passa o CPF sem máscara e a senha
+      await login(cpf.replace(/\D/g, ''), password);
+      // O redirecionamento é feito dentro do login (AuthContext)
+    } catch (error: any) {
+      setLoginError(error.message || 'Erro ao fazer login.');
+    }
   };
 
   const isButtonDisabled = cpf.length !== 14 || cpfError || password.trim() === '';
@@ -58,6 +68,8 @@ export const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••"
         />
+
+        {loginError && <p className={styles.errorMessage}>{loginError}</p>}
 
         <Button type="submit" fullWidth disabled={isButtonDisabled}>
           Entrar

@@ -1,44 +1,69 @@
-import { useState } from 'react';
-import { Layout } from '../../components/Layout/Layout';
-import { CadastroCPF } from '../../components/Informações/CadastroCPF';
-import { Name } from '../../components/Informações/Name';
-import { DataNascimento } from '../../components/Informações/DataNascimento';
-import { Password } from '../../components/Informações/Password';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Name, NameRef } from '../../components/Informações/Name';
+import { CadastroCPF, CadastroCPFRef } from '../../components/Informações/CadastroCPF';
+import { DataNascimento, DataNascimentoRef } from '../../components/Informações/DataNascimento';
+import { Password, PasswordRef } from '../../components/Informações/Password';
 import { Button } from '../../components/Button/Button';
+import { cadastrar, Conta } from '../../api';
 import styles from './CriarLogin.module.css';
 
 function CriarLogin() {
-  // Estados de validade de cada campo
-  const [isNameValid, setIsNameValid] = useState(false);
-  const [isCPFValid, setIsCPFValid] = useState(false);
-  const [isBirthDateValid, setIsBirthDateValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const nameRef = useRef<NameRef>(null);
+  const cpfRef = useRef<CadastroCPFRef>(null);
+  const dataRef = useRef<DataNascimentoRef>(null);
+  const passwordRef = useRef<PasswordRef>(null);
 
-  // Validade geral do formulário
-  const allValid = isNameValid && isCPFValid && isBirthDateValid && isPasswordValid;
+  const navigate = useNavigate();
+  const [cadastroError, setCadastroError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!allValid) return;
-    console.log('Formulário válido. Enviar dados...');
-    // Aqui você pode coletar os dados posteriormente
+
+    const isNameValid = nameRef.current?.isValid() ?? false;
+    const isCPFValid = cpfRef.current?.isValid() ?? false;
+    const isBirthDateValid = dataRef.current?.isValid() ?? false;
+    const isPasswordValid = passwordRef.current?.isValid() ?? false;
+
+    if (!isNameValid || !isCPFValid || !isBirthDateValid || !isPasswordValid) {
+      setCadastroError('Preencha todos os campos corretamente.');
+      return;
+    }
+
+    setLoading(true);
+    setCadastroError('');
+
+    try {
+      await cadastrar({
+        nome: nameRef.current!.getValue(),
+        cpf: cpfRef.current!.getValue(),
+        dataNascimento: dataRef.current!.getValue(),
+        email: 'email@exemplo.com', // ainda fixo; depois pode adicionar campo de email
+        senha: passwordRef.current!.getPassword(),
+      });
+      navigate('/conta-criada');
+    } catch (error: any) {
+      setCadastroError(error.message || 'Erro ao cadastrar.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <h2>Criar Login</h2>
-        {<form className={styles.form} onSubmit={handleSubmit}>
-          <Name onValidityChange={setIsNameValid} />
-          <CadastroCPF onValidityChange={setIsCPFValid} />
-          <DataNascimento onValidityChange={setIsBirthDateValid} />
-          <Password onValidityChange={setIsPasswordValid} />
-          <Button type="submit" fullWidth disabled={!allValid}>
-            Criar Login
-          </Button>
-        </form>}
-      </div>
-    </Layout>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Criar Login</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <Name ref={nameRef} />
+        <CadastroCPF ref={cpfRef} />
+        <DataNascimento ref={dataRef} />
+        <Password ref={passwordRef} />
+        {cadastroError && <p className={styles.errorMessage}>{cadastroError}</p>}
+        <Button type="submit" fullWidth disabled={loading}>
+          {loading ? 'Salvando...' : 'Criar Login'}
+        </Button>
+      </form>
+    </div>
   );
 }
 

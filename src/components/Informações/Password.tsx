@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import styles from '../Informações/Styles/Password.module.css';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import styles from './Styles/Password.module.css';
 import { validatePasswordStrength } from '../../utils/passwordValidators';
 
-interface PasswordProps {
-  onValidityChange?: (isValid: boolean) => void;
+export interface PasswordRef {
+  getPassword: () => string;
+  isValid: () => boolean;
 }
 
-export const Password = ({ onValidityChange }: PasswordProps) => {
+const Password = forwardRef<PasswordRef, {}>((props, ref) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
@@ -36,13 +37,12 @@ export const Password = ({ onValidityChange }: PasswordProps) => {
     }
   };
 
-  const isPasswordStrong = password.length > 0 && passwordErrors.length === 0;
-  const isConfirmValid = confirmPassword.length > 0 && confirmError === '';
-  const isValid = isPasswordStrong && isConfirmValid;
-
-  useEffect(() => {
-    onValidityChange?.(isValid);
-  }, [isValid, onValidityChange]);
+  useImperativeHandle(ref, () => ({
+    getPassword: () => password,
+    isValid: () =>
+      password.length > 0 && passwordErrors.length === 0 &&
+      confirmPassword.length > 0 && confirmError === '',
+  }));
 
   return (
     <div className={styles.wrapper}>
@@ -78,4 +78,6 @@ export const Password = ({ onValidityChange }: PasswordProps) => {
       </div>
     </div>
   );
-};
+});
+
+export { Password };
