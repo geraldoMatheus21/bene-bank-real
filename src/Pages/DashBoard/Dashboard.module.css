@@ -1,18 +1,63 @@
 .container {
-  max-width: 450px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background: #e6f7e6;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  background-color: #f9fdf7;
   border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(30, 86, 49, 0.1);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.title {
+.welcome {
+  text-align: left;
+}
+
+.greeting {
+  font-size: 1.8rem;
   color: #1e5631;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
 }
 
-.text {
+.lastAccess {
   color: #4e6b58;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.saldoCard {
+  background: linear-gradient(135deg, #1e5631 0%, #2d7a42 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.saldoLabel {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.saldoValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.actionLink {
+  text-decoration: none;
+}
+
+.logoutArea {
+  margin-top: 0.5rem;
 }
