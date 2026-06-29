@@ -1,9 +1,6 @@
-/* Footer.module.css */
 .footer {
+  background-color: #1e5631;
+  color: white;
   text-align: center;
   padding: 1rem;
-  margin-top: 15px;
-  background-color: var(--green-pastel); /* opcional, só pra visualizar */
-  color: var(--text-muted);
-  font-size: 0.9rem;
 }

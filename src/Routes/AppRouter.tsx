@@ -8,6 +8,10 @@ import { EsqueciSenha } from '../Pages/EsqueciSenha/EsqueciSenha';
 import { ContaCriada } from '../Pages/CriarLogin/ContaCriada';
 import { Dashboard } from '../Pages/DashBoard/Dashboard';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
+import { Simulador } from '../Pages/Simulador/Simulador';
+import { Analise } from '../Pages/Analise/Analise';
+
+
 
 export const AppRouter = () => {
   return (
@@ -26,8 +30,10 @@ export const AppRouter = () => {
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
-              }
-            />
+              } />
+            <Route
+                path="/simulador" element={<ProtectedRoute><Simulador /></ProtectedRoute>} />
+            <Route path="/analise" element={<ProtectedRoute><Analise /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </AuthProvider>

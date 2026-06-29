@@ -46,6 +46,10 @@ export const Dashboard = () => {
         </Link>
       </div>
 
+      <Link to="/analise" className={styles.actionLink}>
+      <Button fullWidth>Análise de Crédito</Button>
+      </Link>
+
       {/* Botão Sair */}
       <div className={styles.logoutArea}>
         <Button variant="secondary" onClick={logout} fullWidth>
