@@ -10,7 +10,8 @@ import { Dashboard } from '../Pages/DashBoard/Dashboard';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 import { Simulador } from '../Pages/Simulador/Simulador';
 import { Analise } from '../Pages/Analise/Analise';
-
+import { Extrato } from '../Pages/Extrato/Extrato';
+import { MeusDados } from '../Pages/MeusDados/MeusDados';
 
 
 export const AppRouter = () => {
@@ -31,9 +32,11 @@ export const AppRouter = () => {
                   <Dashboard />
                 </ProtectedRoute>
               } />
+            <Route path="/extrato" element={<ProtectedRoute><Extrato /></ProtectedRoute>} />
             <Route
                 path="/simulador" element={<ProtectedRoute><Simulador /></ProtectedRoute>} />
             <Route path="/analise" element={<ProtectedRoute><Analise /></ProtectedRoute>} />
+            <Route path="/meus-dados" element={<ProtectedRoute><MeusDados /></ProtectedRoute>} />
           </Routes>
         </Layout>
       </AuthProvider>

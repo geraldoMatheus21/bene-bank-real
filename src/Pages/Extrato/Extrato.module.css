@@ -1,0 +1,21 @@
+.container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f4fbf4;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(30, 86, 49, 0.08);
+}
+.title {
+  color: #1e5631;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.lista { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.8rem; }
+.item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 1rem; border-radius: 10px; border: 1px solid #a3d9b1; }
+.info { display: flex; flex-direction: column; gap: 0.2rem; }
+.descricao { font-weight: 500; color: #1a3b23; }
+.data { font-size: 0.8rem; color: #4e6b58; }
+.valor { font-weight: bold; font-size: 1.1rem; }
+.entrada { color: #2d7a42; }
+.saida { color: #e53e3e; }
