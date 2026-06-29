@@ -5,7 +5,7 @@ import { CadastroCPF, CadastroCPFRef } from '../../components/Informações/Cada
 import { DataNascimento, DataNascimentoRef } from '../../components/Informações/DataNascimento';
 import { Password, PasswordRef } from '../../components/Informações/Password';
 import { Button } from '../../components/Button/Button';
-import { cadastrar, Conta } from '../../api';
+import { cadastrar } from '../../api';
 import styles from './CriarLogin.module.css';
 
 function CriarLogin() {
